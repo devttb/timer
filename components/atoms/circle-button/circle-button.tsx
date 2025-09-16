@@ -7,16 +7,15 @@ export interface ICircleButtonProps
 }
 
 export const CircleButton = (props: ICircleButtonProps) => {
-  const { children, sizes = '60px', ...rest } = props;
+  const { children, sizes = '70px', ...rest } = props;
   return (
     <ActionIcon
       variant={'outline'}
       style={(theme) => ({
         boxShadow: theme.shadows.md,
-
-        background: { base: '#000', sm: '#fff' },
+        borderColor: 'light-dark(#f0f0f0, var(--mantine-color-body))',
       })}
-      bd={'rgb(238,238,238)'}
+      bg={'light-dark(var(--mantine-color-body), #2C2C2E)'}
       radius={'50%'}
       w={sizes}
       h={sizes}

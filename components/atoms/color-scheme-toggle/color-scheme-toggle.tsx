@@ -1,13 +1,16 @@
 'use client';
 
-import { Button, Group, useMantineColorScheme } from '@mantine/core';
+import { useMemo } from 'react';
+import { IconMoonStars, IconSun } from '@tabler/icons-react';
+import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 
 export function ColorSchemeToggle() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const isDarkMode = useMemo(() => colorScheme === 'dark', [colorScheme]);
 
   return (
-    <Group justify="center" mt="xl">
-      <Button onClick={toggleColorScheme}>{colorScheme}</Button>
-    </Group>
+    <ActionIcon onClick={toggleColorScheme} variant={'transparent'}>
+      {isDarkMode ? <IconSun /> : <IconMoonStars />}
+    </ActionIcon>
   );
 }

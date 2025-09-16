@@ -4,9 +4,9 @@ import { Timers } from '@/components/organisms/timers';
 
 export default function HomePage() {
   return (
-    <Box mih={'100vh'}>
-      <Timers />
+    <Box>
       <ColorSchemeToggle />
+      <Timers />
     </Box>
   );
 }
