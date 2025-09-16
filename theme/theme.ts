@@ -1,7 +1,7 @@
 'use client';
 
 import { Roboto } from 'next/font/google';
-import { createTheme } from '@mantine/core';
+import { createTheme, DEFAULT_THEME, MantineThemeOverride, mergeMantineTheme } from '@mantine/core';
 import classes from '@/theme/theme.module.css';
 
 const roboto = Roboto({
@@ -9,7 +9,7 @@ const roboto = Roboto({
   subsets: ['latin'],
 });
 
-export const theme = createTheme({
+const themeOveride: MantineThemeOverride = createTheme({
   /* Put your mantine theme override here */
   activeClassName: classes.active,
   breakpoints: {
@@ -80,3 +80,5 @@ export const theme = createTheme({
     32: '128px',
   },
 });
+
+export const theme = mergeMantineTheme(DEFAULT_THEME, themeOveride);
