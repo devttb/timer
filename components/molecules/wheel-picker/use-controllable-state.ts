@@ -20,7 +20,6 @@ function useCallbackRef<T extends (...args: any[]) => any>(callback: T | undefin
 function useUncontrolledState<T>({
   defaultProp,
   onChange,
-  k,
 }: Omit<UseControllableStateParams<T>, 'prop'>) {
   const uncontrolledState = useState<T | undefined>(defaultProp);
   const [value] = uncontrolledState;

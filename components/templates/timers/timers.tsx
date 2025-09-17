@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { IconHourglass, IconStopwatch } from '@tabler/icons-react';
 import { FloatingIndicator, Tabs, Text } from '@mantine/core';
-import { Countdown } from '@/components/molecules/count-down';
-import { Stopwatch } from '@/components/molecules/stop-watch';
+import { Countdown } from '@/components/organisms/count-down';
+import { Stopwatch } from '@/components/organisms/stop-watch';
 import classes from './timers.module.css';
 
 const tabs = [
