@@ -1,0 +1,10 @@
+{
+  "homePage": {
+    "tabs": {
+      "alarm": "Alarm",
+      "clock": "Clock",
+      "stopwatch": "Stopwatch",
+      "countdown": "Countdown"
+    }
+  }
+}

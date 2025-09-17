@@ -1,12 +1,38 @@
 'use client';
 
-import React, { JSX } from 'react';
-import { Container, Group } from '@mantine/core';
+import React, { JSX, useLayoutEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { IconChevronDown } from '@tabler/icons-react';
+import { useLocale } from 'next-intl';
+import { Button, Center, Container, Group, Menu } from '@mantine/core';
 import { ColorSchemeToggle } from '@/components/atoms/color-scheme-toggle';
 import { Image } from '@/components/atoms/image';
 import logo from '@/public/logo.png';
 
 export const Header: React.FC = (): JSX.Element => {
+  const [locale, setLocale] = useState<string>(useLocale());
+  const router = useRouter();
+
+  const handleChangeLocale = (newLocale: string) => {
+    setLocale(newLocale);
+    document.cookie = `locale=${newLocale}; path=/`;
+    router.refresh();
+  };
+
+  useLayoutEffect(() => {
+    const storedLocale = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('locale='))
+      ?.split('=')[1];
+    if (!storedLocale) {
+      const browserLocale = navigator.language.split('-')[0];
+      handleChangeLocale(browserLocale);
+      return;
+    }
+
+    handleChangeLocale(storedLocale);
+  }, [router]);
+
   return (
     <header>
       <Container
@@ -29,7 +55,22 @@ export const Header: React.FC = (): JSX.Element => {
         </Group>
 
         <Group>
-          <Group ml={50} gap={5} visibleFrom="sm"></Group>
+          <Menu width={100} transitionProps={{ transition: 'fade-down', duration: 300 }}>
+            <Menu.Target>
+              <Button
+                variant={'transparent'}
+                color={'light-dark(var(--mantine-color-black), var(--mantine-color-white))'}
+              >
+                {locale.toUpperCase()}
+                <IconChevronDown size={14} stroke={1.5} />
+              </Button>
+            </Menu.Target>
+
+            <Menu.Dropdown>
+              <Menu.Item onClick={() => handleChangeLocale('en')}>EN</Menu.Item>
+              <Menu.Item onClick={() => handleChangeLocale('vi')}>VI</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
           <ColorSchemeToggle />
         </Group>
       </Container>
