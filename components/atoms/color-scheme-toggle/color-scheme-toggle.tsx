@@ -9,7 +9,11 @@ export function ColorSchemeToggle() {
   const isDarkMode = useMemo(() => colorScheme === 'dark', [colorScheme]);
 
   return (
-    <ActionIcon onClick={toggleColorScheme} variant={'transparent'}>
+    <ActionIcon
+      onClick={toggleColorScheme}
+      variant={'transparent'}
+      color={'light-dark(var(--mantine-color-black), var(--mantine-color-white))'}
+    >
       {isDarkMode ? <IconSun /> : <IconMoonStars />}
     </ActionIcon>
   );
