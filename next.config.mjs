@@ -1,10 +1,13 @@
 import bundleAnalyzer from '@next/bundle-analyzer';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./libs/i18n/request.ts');
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-export default withBundleAnalyzer({
+const nextConfig = {
   reactStrictMode: false,
   eslint: {
     ignoreDuringBuilds: true,
@@ -12,4 +15,6 @@ export default withBundleAnalyzer({
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
-});
+};
+
+export default withBundleAnalyzer(withNextIntl(nextConfig));

@@ -1,6 +1,8 @@
 import '@mantine/core/styles.css';
 
 import React from 'react';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { Header } from '@/components/organisms/header';
 import { theme } from '@/theme';
@@ -12,9 +14,12 @@ export const metadata = {
   description: 'This is Timer app!',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default async function RootLayout({ children }: { children: any }) {
+  const messages = await getMessages();
+  const locale = await getLocale();
+
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang={locale} {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
         <meta
@@ -23,10 +28,12 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>
-          <Header />
-          {children}
-        </MantineProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <MantineProvider theme={theme}>
+            <Header />
+            {children}
+          </MantineProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

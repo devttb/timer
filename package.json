@@ -13,8 +13,8 @@
     "stylelint": "stylelint '**/*.css' --cache",
     "jest": "jest",
     "jest:watch": "jest --watch",
-    "prettier:check": "prettier --check \"**/*.{ts,tsx}\"",
-    "prettier:write": "prettier --write \"**/*.{ts,tsx}\"",
+    "prettier:check": "prettier --check \"**/*.{ts,tsx,json}\"",
+    "prettier:write": "prettier --write \"**/*.{ts,tsx,json}\"",
     "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
@@ -25,6 +25,7 @@
     "@next/bundle-analyzer": "^15.5.3",
     "@tabler/icons-react": "^3.34.1",
     "next": "15.5.3",
+    "next-intl": "^4.3.9",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },

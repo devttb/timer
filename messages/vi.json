@@ -1,0 +1,10 @@
+{
+  "homePage": {
+    "tabs": {
+      "alarm": "Báo thức",
+      "clock": "Đồng hồ",
+      "stopwatch": "Bấm giờ",
+      "countdown": "Hẹn giờ"
+    }
+  }
+}
